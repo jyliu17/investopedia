@@ -6,9 +6,29 @@
     <link rel="stylesheet" href="styles/main.css">   
     <script src="src/index.js" defer ></script>
     <title>Investopedia</title>
-
 </head>
+
 <body>
+    <div class="navigation">
+        <ul id="nav-bar-list">
+            <h1 id="title">Investopedia</h1>
+            <ul id="nav-links">
+                <li><h3 id="popular-projects">Most Liked</h3></li>
+                <li><h3 id="industry-sort"> Sory By Industry </h3></li>
+                <li><h3 id="commented-projects">Most Comments</h3></li>
+            </ul>
+            <!-- <a href="javascript:void(0);" id="hamburger-menu" class="icon links" onclick="showResponsiveMenu()">
+                <i class="fa fa-bars"></i>
+              </a> -->
+        </ul>
+    </div>
+
+    <div id="project-list">
+        <button id="buttonload">
+            <i class="fa fa-spinner fa-spin"></i> Loading
+          </button>
+        <!-- project grid goes here -->
+    </div>
   
 </body>
 </html>
