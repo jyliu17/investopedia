@@ -1,32 +1,38 @@
 /************ GLOBAL DOM elements *************/
 const listings = document.querySelector("#project-collection")
-const list = document.querySelector(".project")
+const projectDetail = document.querySelector(".container")
 const newProjectForm = document.querySelector("#new-project")
 
 
 
-// newProjectForm.addEventListener("submit", event => {
-//   event.preventDefault()
-//   console.log('submit')
+newProjectForm.addEventListener("submit", event => {
+  event.preventDefault()
+  console.log('submit')
 
-// })
+})
 
-function renderOneProject(projectArray) {
+function renderOneProject(projectObj) {
   /****************** DOM Elements ******************/
 
   
-  const projectDiv = document.createElement("div");
+  // const projectDiv = document.createElement("div");
   
   const img = document.createElement("img");
 
   /****************** DOM attributes ******************/
-  projectDiv.setAttribute('class', 'card');
+  // projectDiv.setAttribute('class', 'card');
   img.setAttribute('class', 'project-image');
   // newH2.textContent = projectArray.name;
-  img.src = projectArray.image;
+  img.src = projectObj.image;
+  img.alt = projectObj.name
   
-  projectDiv.append(img);
-  listings.append(projectDiv);
+  listings.append(img);
+  img.addEventListener("click", event => {
+
+    
+    getProjectById(projectObj.id)       
+    console.log("clicked", projectObj.id) 
+  })
 }
 
   /******************* Fetch Array  ******************/
@@ -35,8 +41,8 @@ function renderOneProject(projectArray) {
     .then(res => res.json())
   }
   
-  getProjects().then(projects => {
-    projects.forEach(project => {
+  getProjects().then(projectArray => {
+    projectArray.forEach(project => {
     renderOneProject(project)
     })
   })
@@ -45,36 +51,37 @@ function renderOneProject(projectArray) {
 function renderProject(projectObj){
   
   
-  const name = document.createElement("h2");
+  const name = document.querySelector(".name");
   name.textContent = projectObj.name
   
-  const description = document.createElement("p")
+  const description = document.querySelector(".description")
   description.textContent = projectObj.description
   
-  // const website = document.createElement("a")
-  // website.href = projectObj.website
-  // website.target = "_blank"
-  // website.textContent = `Link to: ${projectObj.name}`
+ 
   
   
-  const imageProject = document.createElement("img")
-  imageProject.setAttribute('class', 'single')
+  const imageProject = document.querySelector(".detail-image")
   imageProject.src = projectObj.image
   imageProject.alt = projectObj.name
   
-  const industry = document.createElement("h3")
+  const industry = document.querySelector(".industry")
   industry.textContent = projectObj.industry
   
-  const valuation = document.createElement("h3")
+  const valuation = document.querySelector(".valuation")
   valuation.textContent = projectObj.valuation
   
-  const funding = document.createElement("h3")
+  const funding = document.querySelector(".funding")
   funding.textContent = projectObj.funding_goal 
+
+  const website = document.querySelector(".website")
+  website.href = projectObj.website
+  website.target = "_blank"
+  website.textContent = "Website"
   
-  list.append(imageProject,name,description,industry,valuation,funding)
+  projectDetail.append(imageProject,name,description,industry,valuation,funding,website)
 }
 
-function getOneProject(id){
+function getProjectById(id){
   fetch(`http://localhost:3000/projects/${id}`)
     .then((r) => r.json())
     .then((projectObj) => renderProject(projectObj)) 
@@ -82,11 +89,7 @@ function getOneProject(id){
 }
 
 
-// listings.addEventListener("click", event => {
- 
-//   console.log("clicked")        
-  
-// })
+
 
 
 
@@ -104,16 +107,52 @@ function getOneProject(id){
 //       })
 //     }
 
-getOneProject(17)
+getProjectById(1)
 
 
 
 // this is js for nav bar
-("nav ul li").click(function(){
-  var xcoord = $(this).data("xcoord");
-  
-  $("nav div").stop().animate({marginLeft:xcoord}, 500, "easeInOutExpo");
-  $(this).addClass("active");
-  $("nav ul li").not(this).removeClass("active");
-  
-});
+// No JS library used
+
+;(function(document, window, index) {
+  'use strict';
+
+  var elSelector = '.header',
+      element = document.querySelector(elSelector);
+
+  if (!element) return true;
+
+  var elHeight = 0,
+      elTop = 0,
+      dHeight = 0,
+      wHeight = 0,
+      wScrollCurrent = 0,
+      wScrollBefore = 0,
+      wScrollDiff = 0;
+
+  window.addEventListener('scroll', function() {
+      elHeight = element.offsetHeight;
+      dHeight = document.body.offsetHeight;
+      wHeight = window.innerHeight;
+      wScrollCurrent = window.pageYOffset;
+      wScrollDiff = wScrollBefore - wScrollCurrent;
+      elTop = parseInt(window.getComputedStyle(element).getPropertyValue('top')) + wScrollDiff;
+
+      if (wScrollCurrent <= 0)
+          element.style.top = '0px';
+
+      else if (wScrollDiff > 0)
+          element.style.top = (elTop > 0 ? 0 : elTop) + 'px';
+
+      else if (wScrollDiff < 0) {
+          if (wScrollCurrent + wHeight >= dHeight - elHeight)
+              element.style.top = ((elTop = wScrollCurrent + wHeight - dHeight) < 0 ? elTop : 0) + 'px';
+
+          else
+              element.style.top = (Math.abs(elTop) > elHeight ? -elHeight : elTop) + 'px';
+      }
+
+      wScrollBefore = wScrollCurrent;
+  });
+
+}(document, window, 0));

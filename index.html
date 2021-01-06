@@ -9,13 +9,17 @@
 </head>
 
 <body>
-    
-    <header class="navigation">
-        <ul id="nav-bar-list">
-            <h1 id="title">Investopedia</h1>
-        </ul>
-        
+    <header class="header" role="banner">
+        <nav>
+            <ul>
+                <li><a href="#">Most Commented </a>
+                </li>
+                <li><a href="#">Sector</a>
+                </li>
+            </ul>
+        </nav>
     </header>
+   
     <br>
     <br>
     <div id="project-collection">
@@ -23,24 +27,45 @@
     </div>
 <br>
 <br>
-    <div class="project">
-        
+<br>
+<br>
+
+
+
+   
+
+
+    <div class="container" role="main">
+      <img class="detail-image" src=" " alt="Picture" />
+      <h2 class="name">name</h2>
+      <p class="description">Description</p>
+      <h3 class= "industry">industry</h3>
+      <h3 class= "valuation">valuation</h3>
+      <h3 class= "funding">funding</h3>
+      <a class="website" href= "" ><button class="website2" >Website</button></a>
     </div>
      <!-- New Project -->
      <form id="new-project">
         <h4>New Project Information</h4>
         <label for="name">Name: </label>
         <input type="text" name="name" id="new-name" />
+        <br>
         <label for="description">Description: </label>
         <textarea name="description" id="new-description"></textarea>
+        <br>
         <label for="website">Website: </label>
         <input type="text" name="website" id="new-website" />
+        <br>
         <label for="industry">Industry: </label>
         <input type="number" name="industry" id="new-industry" />
+        <br>
         <label for="valuation">Valuation: </label>
         <input type="number" name="valuation" id="new-valuation" />
+        <br>
         <label for="funding-goal">Funding Goal: </label>
         <input type="number" name="funding-goal" id="new-funding-goal" /> 
+        <br>
+        <button>Submit</button>
       </form>
    
  
@@ -52,7 +77,7 @@
   
 </body>
 </html>
-a
+
 
 
   
