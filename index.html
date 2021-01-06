@@ -9,36 +9,40 @@
 </head>
 
 <body>
-    <nav class="navigation">
+    
+    <header class="navigation">
         <ul id="nav-bar-list">
             <h1 id="title">Investopedia</h1>
-            <ul id="nav-links">
-                <li><h3 id="popular-projects">Most Liked</h3></li>
-                <li><h3 id="industry-sort"> Sory By Industry </h3></li>
-                <li><h3 id="commented-projects">Most Comments</h3></li>
-            </ul>
-            <!-- <a href="javascript:void(0);" id="hamburger-menu" class="icon links" onclick="showResponsiveMenu()">
-                <i class="fa fa-bars"></i>
-              </a> -->
         </ul>
-    </nav>
-<!-- 
-    <div id="project-list">
-        <button id="buttonload">
-            <i class="fa fa-spinner fa-spin"></i> Loading
-          </button> -->
-        <!-- project grid goes here -->
-    <!-- </div> -->
-
+        
+    </header>
+    <br>
+    <br>
     <div id="project-collection">
+
+    </div>
+<br>
+<br>
+    <div class="project">
         
     </div>
-
-    <div class="modal">
-        <div class="modal-content" id="project-modal">
-            <span class="close">&times;</span>
-          </div>
-    </div>
+     <!-- New Project -->
+     <form id="new-project">
+        <h4>New Project Information</h4>
+        <label for="name">Name: </label>
+        <input type="text" name="name" id="new-name" />
+        <label for="description">Description: </label>
+        <textarea name="description" id="new-description"></textarea>
+        <label for="website">Website: </label>
+        <input type="text" name="website" id="new-website" />
+        <label for="industry">Industry: </label>
+        <input type="number" name="industry" id="new-industry" />
+        <label for="valuation">Valuation: </label>
+        <input type="number" name="valuation" id="new-valuation" />
+        <label for="funding-goal">Funding Goal: </label>
+        <input type="number" name="funding-goal" id="new-funding-goal" /> 
+      </form>
+   
  
   
 
@@ -48,7 +52,7 @@
   
 </body>
 </html>
-
+a
 
 
   

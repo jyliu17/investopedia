@@ -1,18 +1,22 @@
 /************ GLOBAL DOM elements *************/
 const listings = document.querySelector("#project-collection")
-const dogModal = document.querySelector(".modal")
+const list = document.querySelector(".project")
+const newProjectForm = document.querySelector("#new-project")
 
 
 
+// newProjectForm.addEventListener("submit", event => {
+//   event.preventDefault()
+//   console.log('submit')
 
-
+// })
 
 function renderOneProject(projectArray) {
   /****************** DOM Elements ******************/
 
   
   const projectDiv = document.createElement("div");
-  const newH2 = document.createElement("h2");
+  
   const img = document.createElement("img");
 
   /****************** DOM attributes ******************/
@@ -21,51 +25,8 @@ function renderOneProject(projectArray) {
   // newH2.textContent = projectArray.name;
   img.src = projectArray.image;
   
-  projectDiv.append(newH2, img);
+  projectDiv.append(img);
   listings.append(projectDiv);
-
-  img.addEventListener("click", function(event){
-    showProject()
-    console.log(event.target)
-  })
-  
-function showProject(newProject) {
-   debugger
-  fetch(`http://localhost:3000/projects/${id}`)
-  .then( r => r.json())
-  .then( newProject => {
-      let modalContent = document.querySelector("#project-modal")
-
-    
-      let child = modalContent.lastElementChild;
-      while (child) {
-          modalContent.removeChild(child);
-          child = modalContent.lastElementChild;
-      }
-      
-      let modalImg = document.createElement("img")
-      modalImg.setAttribute("class", "modal-img")
-      const p = document.createElement("p");
-      const H2 = document.createElement("h2");
-
-      modalImg.src = newProject.image_url
-      p.textContent = newProject.description
-      H2.textContent = newProject.nam
-
-
-      modalContent.append(modalImg, p, h2)
-
-      dogModal.style.display = "block";
-      scrollButton.style.display = "none";
-
-  })
-
-}
-
-
-
-
-
 }
 
   /******************* Fetch Array  ******************/
@@ -81,25 +42,78 @@ function showProject(newProject) {
   })
 
 
-
-//   function projectShow() {
-//       return fetch(`http://localhost:3000/projects/${id}`)
-//   const projectDiv = document.createElement("div");
-//   const newH2 = document.createElement("h2");
-//   const img = document.createElement("img");
-
-
-//   /****************** DOM attributes ******************/
-//   projectDiv.setAttribute('class', 'card');
-//   img.setAttribute('class', 'project-image');
-//   // newH2.textContent = projectArray.name;
-//   img.src = projectArray.image;
+function renderProject(projectObj){
   
-//   projectDiv.append(newH2, img);
-//   listings.append(projectDiv);
-//   }
+  
+  const name = document.createElement("h2");
+  name.textContent = projectObj.name
+  
+  const description = document.createElement("p")
+  description.textContent = projectObj.description
+  
+  // const website = document.createElement("a")
+  // website.href = projectObj.website
+  // website.target = "_blank"
+  // website.textContent = `Link to: ${projectObj.name}`
+  
+  
+  const imageProject = document.createElement("img")
+  imageProject.setAttribute('class', 'single')
+  imageProject.src = projectObj.image
+  imageProject.alt = projectObj.name
+  
+  const industry = document.createElement("h3")
+  industry.textContent = projectObj.industry
+  
+  const valuation = document.createElement("h3")
+  valuation.textContent = projectObj.valuation
+  
+  const funding = document.createElement("h3")
+  funding.textContent = projectObj.funding_goal 
+  
+  list.append(imageProject,name,description,industry,valuation,funding)
+}
+
+function getOneProject(id){
+  fetch(`http://localhost:3000/projects/${id}`)
+    .then((r) => r.json())
+    .then((projectObj) => renderProject(projectObj)) 
+
+}
+
+
+// listings.addEventListener("click", event => {
+ 
+//   console.log("clicked")        
+  
+// })
 
 
 
+// function createProject() {
+//   fetch("http://localhost:3000/projects", {
+//         method: 'POST',
+//         headers: {
+//           'Content-Type': 'application/json',
+//         },
+//         body: JSON.stringify(updateObj),
+//       })
+//       .then(response => response.json())
+//       .then(data => {
+//         console.log("success:", data)
+//       })
+//     }
+
+getOneProject(17)
 
 
+
+// this is js for nav bar
+("nav ul li").click(function(){
+  var xcoord = $(this).data("xcoord");
+  
+  $("nav div").stop().animate({marginLeft:xcoord}, 500, "easeInOutExpo");
+  $(this).addClass("active");
+  $("nav ul li").not(this).removeClass("active");
+  
+});
