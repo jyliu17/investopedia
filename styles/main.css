@@ -16,10 +16,10 @@
 
 
   #project-collection img {
-    height: 120px;
-    width: 400px;
+    height: 100px;
+    width: 180px;
 
-    padding: 1rem;
+    padding: 2rem;
     display: inline-grid;
     
     margin-right: 0.9rem;
@@ -157,14 +157,27 @@ h2, h3  {
     display: block;
     margin-left: auto;
     margin-right: auto;
-    width: 400px;
+    width: 300px;
     height: auto;
 }
 
 a.website {
-    padding-left: 529px;
     text-align: center;
-    font-size: 1em;
-    color: #fff;
+    font-size: .8em;
     margin: 2em 0;
+    background-color: rgb(255, 255, 255);
+    color: rgb(30, 28, 175);
+    padding: 1em 1.5em;
+    text-decoration: none;
+    text-transform: uppercase;
 }
+
+  
+  a.website:hover {
+    background-color: rgb(85, 104, 129);
+  }
+  
+  a.website:active {
+    background-color: black;
+  }
+  
