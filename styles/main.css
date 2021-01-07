@@ -1,5 +1,6 @@
 .description{
     text-align: center;
+    transition: all 1s ease;
 }
 
 .single{
@@ -79,7 +80,7 @@
     left: 0;
     height: 85px;
     border: none;
-    background-color: rgba(255,255,255,1);
+    background-color: rgba(22, 56, 167, 0.712);
     box-shadow: 0px 3px 2px 0px rgba(50, 50, 50, 0.2);
 }
 
@@ -90,7 +91,7 @@ body {
     font-weight: 300;
     line-height: 1;
     letter-spacing: 0.05em;
-    background-image: linear-gradient(135deg, rgba(25,118,210,0.9) 0%,rgba(83,109,254,0.9) 100%), url('https://wallpapers.hector.me/wavey/Aqua.jpg');
+    background-image: linear-gradient(135deg, rgba(150, 150, 150, 0.9) 0%,rgba(41, 99, 216, 0.9) 100%), url('https://wallpapers.hector.me/wavey/Aqua.jpg');
     background-repeat: no-repeat;
     background-position: center center;
     background-attachment: fixed;
@@ -101,6 +102,7 @@ body {
 
 nav {
     margin: 2em;
+    
 }
 
 ul {
@@ -187,6 +189,7 @@ button#website {
     font-size: 14px;
     border-radius: 10px;
     border: 1px solid #305A72;
+    bottom: 50%;
 }
 
   
@@ -208,7 +211,7 @@ button#website {
 /* form new project css */
 .form-style-9{
 	max-width: 450px;
-	background: #FAFAFA;
+	background: #e5edf8;
 	padding: 30px;
 	margin: 50px auto;
 	box-shadow: 1px 1px 25px rgba(0, 0, 0, 0.35);
@@ -277,13 +280,18 @@ button#website {
 	background-color: #28739E;
 }
 .form-style-9 {
-    float: left;
+    right:50%;
+
+    padding-top: 8px;
+    padding-right:8px;
+    padding-left:8px;
 }
+
 
 /* form new comment css  */
 .comment-form{
 	max-width: 450px;
-	background: #FAFAFA;
+	background: #e5edf8;
 	padding: 70px;
 	margin: 50px auto;
 	box-shadow: 1px 1px 25px rgba(0, 0, 0, 0.35);
@@ -353,5 +361,10 @@ button#website {
 	background-color: #28739E;
 }
 .comment-form{
-    float: right;
+    height: 75px;
+    width: 400px;
+    left: 200%;
+    padding-top: 5px;
+    padding-right:5px;
+    padding-left:5px;
 }

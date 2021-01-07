@@ -2,8 +2,9 @@
 const listings = document.querySelector("#project-collection")
 const projectDetail = document.querySelector(".container")
 const newProjectForm = document.querySelector(".form-style-9")
-const commentForm = document.querySelector("#comment-form")
+const commentForm = document.querySelector(".comment-form")
  let commentId = 1
+const commentUl = document.querySelector(".comments")
 
 newProjectForm.addEventListener("submit", event => {
   event.preventDefault()
@@ -62,6 +63,8 @@ function renderOneProject(projectObj) {
   img.alt = projectObj.name
   span.append(deleteBtn)
   listings.append(img,span);
+ 
+  
   img.addEventListener("click", event => {
     
 
@@ -78,7 +81,8 @@ function renderOneProject(projectObj) {
     })
     .then(response => response.json())
     .then((params) => {
-      projectDetail.remove()
+      img.remove()
+      span.remove()
     })
   })
 }
@@ -98,7 +102,7 @@ function renderOneProject(projectObj) {
 
 function renderProject(projectObj){
   
-  
+  debugger
   const name = document.querySelector(".name");
   name.textContent = projectObj.name
   
@@ -125,8 +129,13 @@ function renderProject(projectObj){
   // website.href = projectObj.website
   // website.target = "_blank"
   website.textContent = "🔎"
-  
-  projectDetail.append(website,imageProject,name,description,industry,valuation,funding)
+
+  commentForm.dataset.id = projectObj.id
+  commentUl.innerHTML = ""
+
+  projectObj.comments.forEach(commentObj => {
+    renderComment(commentObj)
+  })
 
 
   website.addEventListener("click", (event) => {
@@ -142,42 +151,42 @@ function getProjectById(id){
 }
 
 
-// commentForm.addEventListener("submit", event => {
-//   event.preventDefault()
-//   debugger
-//   console.log('submit')
-
-//   const commentObj = {
-//     author: event.target.name.value,
-//     content: event.target.comment.value,
-//     id: commentId
-//   }
+commentForm.addEventListener("submit", event => {
+  event.preventDefault()
   
-//   fetch("http://localhost:3000/comments", {
-//     method: 'POST',
-//     headers: {
-//       'Content-Type': 'application/json',
-//     },
-//     body: JSON.stringify(commentObj),
-//   })
-//   .then(response => response.json())
-//   .then(dataObj => {
-//     renderComment(dataObj)
-//   })
-// })
+  console.log('submit')
 
-// function renderComment(comObj){
-//   const li = document.createElement("li")
-
-//   const h4 = document.createElement("h4")
-//   h4.textContent = comObj.author
+  const commentObj = {
+    author: event.target.name.value,
+    content: event.target.comment.value,
+    project_id: commentForm.dataset.id,
+  }
   
-//   const h5 = document.createElement("h5")
-//   h5.textContent = comObj.content
+  fetch("http://localhost:3000/comments", {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(commentObj),
+  })
+  .then(response => response.json())
+  .then(dataObj => {
+    renderComment(dataObj)
+  })
+})
 
-//   li.append(h4,h5)
-//   projectDetail.append(li)
-// }
+function renderComment(comObj){
+  const li = document.createElement("li")
+
+  const h4 = document.createElement("h4")
+  h4.textContent = comObj.author
+  
+  const h5 = document.createElement("h5")
+  h5.textContent = comObj.content
+
+  li.append(h4,h5)
+  commentUl.append(li)
+}
 
 
 
