@@ -109,9 +109,6 @@ function renderProject(projectObj){
   const description = document.querySelector(".description")
   description.textContent = projectObj.description
   
- 
-  
-  
   const imageProject = document.querySelector(".detail-image")
   imageProject.src = projectObj.image
   imageProject.alt = projectObj.name
