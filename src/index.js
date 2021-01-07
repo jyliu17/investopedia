@@ -7,8 +7,36 @@ const newProjectForm = document.querySelector("#new-project")
 
 newProjectForm.addEventListener("submit", event => {
   event.preventDefault()
-  console.log('submit')
+ 
 
+  const newName = event.target.name.value
+  const newDescription = event.target.description.value
+  const newWebsite = event.target.website.value
+  const newIndustry = event.target.industry.value
+  const newValuation = event.target.valuation.value
+  const newFG = event.target.fundinggoal.value
+
+  const newProject = {
+    name: newName, 
+    descripton: newDescription, 
+    website: newWebsite, 
+    industry: newIndustry,
+    valuation: newValuation, 
+    funding_goal: newFG
+  }
+
+ 
+    fetch("http://localhost:3000/projects", {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(newProject),
+      })
+      .then(response => response.json())
+      .then(projectObj => {
+        renderOneProject(projectObj)
+      })
 })
 
 function renderOneProject(projectObj) {
@@ -56,9 +84,6 @@ function renderProject(projectObj){
   
   const description = document.querySelector(".description")
   description.textContent = projectObj.description
-  
- 
-  
   
   const imageProject = document.querySelector(".detail-image")
   imageProject.src = projectObj.image
