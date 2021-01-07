@@ -45,41 +45,52 @@
       <h3 class= "comments">
           <li></li>
         </h3>
-      <a class="website" href= "" >Website</a>
+      <button id="website">Website</button> 
     </div>
-     <!-- New Project -->
-     <form id="new-project">
-        <h4>New Project Information</h4>
-        <label for="name">Name: </label>
-        <input type="text" name="name" id="new-name" />
-        <br>
-        <label for="description">Description: </label>
-        <textarea name="description" id="new-description"></textarea>
-        <br>
-        <label for="website">Website: </label>
-        <input type="text" name="website" id="new-website" />
-        <br>
-        <label for="industry">Industry: </label>
-        <input type="number" name="industry" id="new-industry" />
-        <br>
-        <label for="valuation">Valuation: </label>
-        <input type="number" name="valuation" id="new-valuation" />
-        <br>
-        <label for="funding-goal">Funding Goal: </label>
-        <input type="number" name="funding-goal" id="new-funding-goal" /> 
-        <br>
-        <button>Submit</button>
-      </form>
-      <form>
-          <h4>Comments</h4>
-          <
-      </form>
-   
- 
   
-
-
       
+  
+      <form class="form-style-9">
+        <h4>New Project Information</h4>
+        <ul>
+        <li>
+            <input type="text" name="name" class="field-style field-split align-left" placeholder="Name" />
+            <input type="text" name="industry" class="field-style field-split align-right" placeholder="Industry" />
+        
+        </li>
+        <li>
+            <input type="text" name="valuation" class="field-style field-split align-left" placeholder="Valuation" />
+            <input type="text" name="website" class="field-style field-split align-right" placeholder="Website" />
+            
+        </li>
+        <li>
+        <input type="text" name="fundinggoal" class="field-style field-full align-none" placeholder="Funding Goal" />
+        </li>
+        <li>
+        <input type="text" name="description" class="field-style" placeholder="Description"/>
+        <input type="text" name="image" class="field-style" placeholder="Image"/>
+        </li>
+        <li>
+        <input type="submit" value="Send Message" />
+        </li>
+        </ul>
+        </form>
+
+        <form class="comment-form">
+            <h4>Comments</h4>
+            <ul>
+            <li>
+            <input type="text" name="name" class="field-style" placeholder="Full Name"/>
+            <input type="text" name="comment" class="field-style" placeholder="Comment"/>
+            </li>
+            <li>
+            <input type="submit" value="Send Message" />
+            </li>
+            </ul>
+            </form>
+    
+
+          
 
   
 </body>

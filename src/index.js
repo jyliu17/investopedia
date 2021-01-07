@@ -1,15 +1,46 @@
 /************ GLOBAL DOM elements *************/
 const listings = document.querySelector("#project-collection")
 const projectDetail = document.querySelector(".container")
-const newProjectForm = document.querySelector("#new-project")
-
-
+const newProjectForm = document.querySelector(".form-style-9")
+const commentForm = document.querySelector("#comment-form")
+ let commentId = 1
 
 newProjectForm.addEventListener("submit", event => {
   event.preventDefault()
-  console.log('submit')
+ 
 
+  const newName = event.target.name.value
+  const newDescription = event.target.description.value
+  const newWebsite = event.target.website.value
+  const newImage = event.target.image.value
+  const newIndustry = event.target.industry.value
+  const newValuation = event.target.valuation.value
+  const newFG = event.target.fundinggoal.value
+
+  const newProject = {
+    name: newName, 
+    description: newDescription, 
+    website: newWebsite, 
+    image: newImage,
+    industry: newIndustry,
+    valuation: newValuation, 
+    funding_goal: newFG
+  }
+
+ 
+    fetch("http://localhost:3000/projects", {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(newProject),
+      })
+      .then(response => response.json())
+      .then(projectObj => {
+        renderOneProject(projectObj)
+      })
 })
+
 
 function renderOneProject(projectObj) {
   /****************** DOM Elements ******************/
@@ -18,20 +49,37 @@ function renderOneProject(projectObj) {
   // const projectDiv = document.createElement("div");
   
   const img = document.createElement("img");
-
+  const deleteBtn = document.createElement("button")
   /****************** DOM attributes ******************/
   // projectDiv.setAttribute('class', 'card');
+  const span = document.createElement("span")
+  deleteBtn.textContent = "💣"
+  deleteBtn.setAttribute('class', 'delete-btn')
+
   img.setAttribute('class', 'project-image');
   // newH2.textContent = projectArray.name;
   img.src = projectObj.image;
   img.alt = projectObj.name
-  
-  listings.append(img);
+  span.append(deleteBtn)
+  listings.append(img,span);
   img.addEventListener("click", event => {
+    
 
     
     getProjectById(projectObj.id)       
     console.log("clicked", projectObj.id) 
+  })
+
+
+  deleteBtn.addEventListener('click', event => {
+    console.log(projectObj.id)
+    fetch(`http://localhost:3000/projects/${projectObj.id}`, {
+      method:'DELETE'
+    })
+    .then(response => response.json())
+    .then((params) => {
+      projectDetail.remove()
+    })
   })
 }
 
@@ -73,12 +121,17 @@ function renderProject(projectObj){
   const funding = document.querySelector(".funding")
   funding.textContent = projectObj.funding_goal 
 
-  const website = document.querySelector(".website")
-  website.href = projectObj.website
-  website.target = "_blank"
-  website.textContent = "Website"
+  const website = document.querySelector("#website")
+  // website.href = projectObj.website
+  // website.target = "_blank"
+  website.textContent = "🔎"
   
-  projectDetail.append(imageProject,name,description,industry,valuation,funding,website)
+  projectDetail.append(website,imageProject,name,description,industry,valuation,funding)
+
+
+  website.addEventListener("click", (event) => {
+
+  })
 }
 
 function getProjectById(id){
@@ -89,23 +142,48 @@ function getProjectById(id){
 }
 
 
+// commentForm.addEventListener("submit", event => {
+//   event.preventDefault()
+//   debugger
+//   console.log('submit')
+
+//   const commentObj = {
+//     author: event.target.name.value,
+//     content: event.target.comment.value,
+//     id: commentId
+//   }
+  
+//   fetch("http://localhost:3000/comments", {
+//     method: 'POST',
+//     headers: {
+//       'Content-Type': 'application/json',
+//     },
+//     body: JSON.stringify(commentObj),
+//   })
+//   .then(response => response.json())
+//   .then(dataObj => {
+//     renderComment(dataObj)
+//   })
+// })
+
+// function renderComment(comObj){
+//   const li = document.createElement("li")
+
+//   const h4 = document.createElement("h4")
+//   h4.textContent = comObj.author
+  
+//   const h5 = document.createElement("h5")
+//   h5.textContent = comObj.content
+
+//   li.append(h4,h5)
+//   projectDetail.append(li)
+// }
 
 
 
 
-// function createProject() {
-//   fetch("http://localhost:3000/projects", {
-//         method: 'POST',
-//         headers: {
-//           'Content-Type': 'application/json',
-//         },
-//         body: JSON.stringify(updateObj),
-//       })
-//       .then(response => response.json())
-//       .then(data => {
-//         console.log("success:", data)
-//       })
-//     }
+
+
 
 getProjectById(1)
 
@@ -156,3 +234,5 @@ getProjectById(1)
   });
 
 }(document, window, 0));
+
+
