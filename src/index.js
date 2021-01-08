@@ -184,16 +184,27 @@ function renderComment(comObj){
   
   const deleteB = document.createElement("button")
   deleteB.setAttribute('class','comment-delete')
-  deleteB.textContent = "Delete"
+  deleteB.textContent = "💣"
 
-  const likeB = document.createElement("button")
-  likeB.setAttribute('class','comment-like')
-  likeB.textContent = "Like"
+  const likeB = document.createElement("div")
+  likeB.setAttribute('class','like-btn-svg')
+  
 
-
+  
 
   li.append(likeB,deleteB,h4,h5)
   commentUl.append(li)
+
+  deleteB.addEventListener('click', event => {
+    console.log(comObj.id)
+    fetch(`http://localhost:3000/comments/${comObj.id}`, {
+      method:'DELETE'
+    })
+    .then(response => response.json())
+    .then((params) => {
+      li.remove()
+    })
+  })
 }
 
 

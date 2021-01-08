@@ -82,6 +82,8 @@
     border: none;
     background-color: rgba(22, 56, 167, 0.712);
     box-shadow: 0px 3px 2px 0px rgba(50, 50, 50, 0.2);
+    height: 120px;
+    
 }
 
 /* Demo stuff */
@@ -130,6 +132,7 @@ li a {
     text-transform: uppercase;
     transition: all 0.5s ease;
     display: inline-block;
+    padding-top: 16px;
 }
 
 li.active a, li a:hover {
@@ -385,30 +388,111 @@ button#website {
 
 .h4{
     font: 15px Arial, Helvetica, sans-serif;
-   color: #03658c;
-   right: 300px;
+   color: #033a8c;
+   right: 480px;
    position: relative;
+   margin-left: 1px;
+    margin-right: 1px;
+    margin-top:1px;
+    text-shadow: 2px 0 #888888;
+    font-weight: 900;
+   
 }
 
 .h5{
     font: 12px Arial, Helvetica, sans-serif;
    color: rgba(55, 57, 223, 0.63);
-   right: 200px;
+   right: 350px;
    position: relative;
+   text-shadow: 1px 0 ;
 }
 
 .comment-delete{
     border-radius: 4px;
-    left: 200px;
+    /* right: px; */
+    top: 5px;
     position: relative;
     border-radius: 10px;
     border: 1px solid #305A72;
+    right:200px;
+    margin-left: 1px;
+    margin-right: 1px;
 }
 
-.comment-like{
-    border-radius: 4px;
-    left: 200px;
+
+
+/* 
+likebutton  */
+
+.like-btn-svg {
+    width: 80px;
+    height: 100px;
     position: relative;
-    border-radius: 10px;
-    border: 1px solid #305A72;
+    margin-right: 1px;
+    margin-top:2px;
+    top: 115px;
+    left: 345px;
+    
+
+    
+    transform: translate(-50%, -50%);
+    background: url(https://abs.twimg.com/a/1446542199/img/t1/web_heart_animation.png) no-repeat;
+    background-position: 0 0;
+    animation: fave-like-btn-svg 1s steps(28);
+    cursor: pointer;
+    
+  }
+  
+  .like-btn-svg:hover {
+    background-position: -2800px 0;
+    transition: background 1s steps(28);
+  }
+  
+  @keyframes fave-like-btn-svg {
+    0% {
+      background-position: 2800px 0;
+    }
+    100% {
+      background-position: -2800px 0;
+    }
+  }
+
+  a.title{
+      font-size: 38px;
+      text-shadow: 1px 0 #888888;
+      
+  }
+
+  h2.name{
+color: rgba(226, 224, 243, 0.541);
+font-weight: 900;
+font-size: 30px;
+  }
+
+.description{
+    color: rgba(255, 255, 255, 0.541);
 }
+
+.valuation{
+        color: white;
+        ;
+        font: 12px Arial, Helvetica, sans-serif;
+        font-weight: 900;
+}
+
+.funding{
+ color:white;
+ ;
+ font: 12px Arial, Helvetica, sans-serif;
+ font-weight: 900;
+}
+
+.industry{
+    color:white;
+    font: 12px Arial, Helvetica, sans-serif;
+    font-weight: 900;
+}
+
+
+
+
