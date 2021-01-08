@@ -497,4 +497,7 @@ font-size: 30px;
 
 
 
-
+p.like-p{
+    color: rgba(211, 208, 245, 0.979);
+    padding-left: 39px;
+}
