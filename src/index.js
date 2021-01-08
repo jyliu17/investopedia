@@ -102,7 +102,7 @@ function renderOneProject(projectObj) {
 
 function renderProject(projectObj){
   
-  debugger
+
   const name = document.querySelector(".name");
   name.textContent = projectObj.name
   
@@ -125,7 +125,7 @@ function renderProject(projectObj){
   const website = document.querySelector("#website")
   // website.href = projectObj.website
   // website.target = "_blank"
-  website.textContent = "🔎"
+  // website.textContent = "🔎"
 
   commentForm.dataset.id = projectObj.id
   commentUl.innerHTML = ""
@@ -135,9 +135,7 @@ function renderProject(projectObj){
   })
 
 
-  website.addEventListener("click", (event) => {
-
-  })
+  
 }
 
 function getProjectById(id){
@@ -176,12 +174,25 @@ function renderComment(comObj){
   const li = document.createElement("li")
 
   const h4 = document.createElement("h4")
+  h4.setAttribute('class','h4')
   h4.textContent = comObj.author
   
   const h5 = document.createElement("h5")
+  h5.setAttribute('class','h5')
   h5.textContent = comObj.content
 
-  li.append(h4,h5)
+  
+  const deleteB = document.createElement("button")
+  deleteB.setAttribute('class','comment-delete')
+  deleteB.textContent = "Delete"
+
+  const likeB = document.createElement("button")
+  likeB.setAttribute('class','comment-like')
+  likeB.textContent = "Like"
+
+
+
+  li.append(likeB,deleteB,h4,h5)
   commentUl.append(li)
 }
 

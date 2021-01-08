@@ -141,6 +141,7 @@ li.active a, li a:hover {
     max-width: 70em;
     padding: 2em;
     margin: 0 auto;
+    font: 15px Arial, Helvetica, sans-serif;
 }
 
 h1, h2  {
@@ -367,4 +368,47 @@ button#website {
     padding-top: 5px;
     padding-right:5px;
     padding-left:5px;
+}
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+.h4{
+    font: 15px Arial, Helvetica, sans-serif;
+   color: #03658c;
+   right: 300px;
+   position: relative;
+}
+
+.h5{
+    font: 12px Arial, Helvetica, sans-serif;
+   color: rgba(55, 57, 223, 0.63);
+   right: 200px;
+   position: relative;
+}
+
+.comment-delete{
+    border-radius: 4px;
+    left: 200px;
+    position: relative;
+    border-radius: 10px;
+    border: 1px solid #305A72;
+}
+
+.comment-like{
+    border-radius: 4px;
+    left: 200px;
+    position: relative;
+    border-radius: 10px;
+    border: 1px solid #305A72;
 }
