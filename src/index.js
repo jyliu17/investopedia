@@ -5,6 +5,8 @@ const newProjectForm = document.querySelector(".form-style-9")
 const commentForm = document.querySelector(".comment-form")
  let commentId = 1
 const commentUl = document.querySelector(".comments")
+const likeDiv = document.querySelector(".likeDiv")
+
 
 newProjectForm.addEventListener("submit", event => {
   event.preventDefault()
@@ -123,17 +125,56 @@ function renderProject(projectObj){
   funding.textContent = projectObj.funding_goal 
 
   const website = document.querySelector("#website")
+
+  const likeB = document.createElement("div")
+  likeB.setAttribute('class','like-btn-svg')
+
+  const p = document.createElement("p")
+  p.setAttribute('class', 'like-p')
+  p.textContent = projectObj.num
+
+  
+  
   // website.href = projectObj.website
   // website.target = "_blank"
   // website.textContent = "🔎"
-
+  likeDiv.innerHTML = ""
+  likeB.append(p)
+  likeDiv.append(likeB)
+  // projectDetail.append(likeDiv)
   commentForm.dataset.id = projectObj.id
   commentUl.innerHTML = ""
+
+ 
+  
 
   projectObj.comments.forEach(commentObj => {
     renderComment(commentObj)
   })
 
+
+  
+
+  likeB.addEventListener('click', event => {
+    console.log("click")
+    const newLikes = {num: projectObj.num +=1}
+
+    fetch(`http://localhost:3000/projects/${projectObj.id}`, {
+      method: 'PATCH', // or 'PUT'
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(newLikes),
+    })
+    .then(response => response.json())
+    .then(updateLikes => {
+      console.log('Success:', updateLikes);
+      p.innerText = updateLikes.num
+      
+    
+    })  
+  })
+ 
 
   
 }
@@ -186,14 +227,15 @@ function renderComment(comObj){
   deleteB.setAttribute('class','comment-delete')
   deleteB.textContent = "💣"
 
-  const likeB = document.createElement("div")
-  likeB.setAttribute('class','like-btn-svg')
   
 
   
 
-  li.append(likeB,deleteB,h4,h5)
+  li.append(deleteB,h4,h5)
   commentUl.append(li)
+
+ 
+
 
   deleteB.addEventListener('click', event => {
     console.log(comObj.id)

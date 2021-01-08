@@ -428,11 +428,11 @@ likebutton  */
     width: 80px;
     height: 100px;
     position: relative;
-    margin-right: 1px;
+    margin-right: 0px;
     margin-top:2px;
-    top: 115px;
-    left: 345px;
-    
+   
+    left: 1000px;
+    bottom: 530px;
 
     
     transform: translate(-50%, -50%);
@@ -492,6 +492,8 @@ font-size: 30px;
     font: 12px Arial, Helvetica, sans-serif;
     font-weight: 900;
 }
+
+
 
 
 
